@@ -3982,7 +3982,7 @@ static int _kill_step_on_node(void *x, void *arg)
 	kill_step_on_node_args_t *args = (kill_step_on_node_args_t *) arg;
 	int step_node_inx = 0;
 	int bit_position = args->node_ptr->index;
-	int i_first, i_last, rem = 0;
+	int rem = 0;
 	uint32_t step_rc = 0;
 	step_complete_msg_t req;
 
@@ -3992,14 +3992,8 @@ static int _kill_step_on_node(void *x, void *arg)
 		return 0;
 
 	/* Remove step allocation from the job's allocation */
-	i_first = bit_ffs(step_ptr->step_node_bitmap);
-	i_last = bit_fls(step_ptr->step_node_bitmap);
-	for (int i = i_first; i <= i_last; i++) {
-		if (i == bit_position)
-			break;
-		if (bit_test(step_ptr->step_node_bitmap, i))
-			step_node_inx++;
-	}
+	step_node_inx = bit_get_pos_num(step_ptr->step_node_bitmap,
+					bit_position);
 
 	memset(&req, 0, sizeof(step_complete_msg_t));
 	memcpy(&req.step_id, &step_ptr->step_id, sizeof(req.step_id));
@@ -4284,8 +4278,9 @@ extern void step_set_alloc_tres(step_record_t *step_ptr, uint32_t node_count,
 		 * job specific job_resrcs structure.
 		 */
 		if (job_ptr->batch_host) {
-			batch_inx = job_get_node_inx(
-				job_ptr->batch_host, job_ptr->node_bitmap);
+			int batch_inx = bit_get_pos_num(
+				job_ptr->node_bitmap,
+				node_name_get_inx(job_ptr->batch_host));
 			if (batch_inx == -1) {
 				error("%s: Invalid batch host %s for %pJ; this should never happen",
 				      __func__, job_ptr->batch_host, job_ptr);

@@ -2664,9 +2664,9 @@ extern int make_batch_job_cred(batch_job_launch_msg_t *launch_msg_ptr,
 	cred_arg.step_id.step_id = SLURM_BATCH_SCRIPT;
 	cred_arg.step_id.step_het_comp = NO_VAL;
 	if (job_resrcs_ptr->memory_allocated) {
-		int batch_inx = job_get_node_inx(
-			job_ptr->batch_host, job_ptr->node_bitmap);
-
+		int batch_inx = bit_get_pos_num(
+			job_ptr->node_bitmap,
+			node_name_get_inx(job_ptr->batch_host));
 		if (batch_inx == -1) {
 			error("%s: Invalid batch host %s for %pJ; this should never happen",
 			      __func__, job_ptr->batch_host, job_ptr);
