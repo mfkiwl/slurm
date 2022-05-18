@@ -552,7 +552,7 @@ static avail_res_t **_select_nodes(job_record_t *job_ptr, uint32_t min_nodes,
 			i_last = -2;
 
 		if (is_cons_tres) {
-			for (n = i_first; n < i_last; n++) {
+			for (n = 0; n < bit_size(node_bitmap); n++) {
 				if (!avail_res_array[n] ||
 				    !bit_test(node_bitmap, n))
 					FREE_NULL_BITMAP(avail_core[n]);
