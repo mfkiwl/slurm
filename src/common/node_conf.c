@@ -186,6 +186,7 @@ hostlist_t bitmap2hostlist (bitstr_t *bitmap)
 {
 	int i, first, last;
 	hostlist_t hl;
+	node_record_t *node_ptr;
 
 	if (bitmap == NULL)
 		return NULL;
@@ -201,7 +202,8 @@ hostlist_t bitmap2hostlist (bitstr_t *bitmap)
 			continue;
 		if (!node_record_table_ptr[i])
 			continue;
-		hostlist_push_host(hl, node_record_table_ptr[i]->name);
+		node_ptr = node_record_table_ptr[i];
+		hostlist_push_host(hl, node_ptr->name);
 	}
 	return hl;
 
