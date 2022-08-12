@@ -1792,6 +1792,7 @@ bit_get_pos_num(bitstr_t *b, bitoff_t pos)
 		error("bit %"BITSTR_FMT" not set", pos);
 		return cnt;
 	}
+	/* bit_ffs? */
 	for (bit = 0; bit <= pos; bit++) {
 		if (bit_test(b, bit)) {	/* we got one */
 			cnt++;
