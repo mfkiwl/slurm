@@ -1475,7 +1475,7 @@ alloc_job:
 				continue;
 			if (c >= c_size) {
 				error("core_bitmap index error on node %s (NODE_INX:%d, C_SIZE:%u)",
-				      node_ptr->name, n, c_size);
+				      node_ptr->name, i, c_size);
 				drain_nodes(node_ptr->name, "Bad core count",
 					    getuid());
 				_free_avail_res_array(avail_res_array);
