@@ -3481,11 +3481,12 @@ extern slurm_step_layout_t *step_layout_create(step_record_t *step_ptr,
 		bool test_mem_per_gres = false;
 		bool ignore_alloc;
 		int err_code = SLURM_SUCCESS;
+		node_record_t *node_ptr;
 
 		job_node_offset++;
 		if (!bit_test(step_ptr->step_node_bitmap, i))
 			continue;
-		node_record_t *node_ptr = node_record_table_ptr[i];
+		node_ptr = node_record_table_ptr[i];
 
 #ifndef HAVE_FRONT_END
 		if (step_ptr->start_protocol_ver > node_ptr->protocol_version)
