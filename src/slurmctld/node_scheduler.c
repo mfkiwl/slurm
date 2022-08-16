@@ -4300,8 +4300,9 @@ extern void re_kill_job(job_record_t *job_ptr)
 		agent_args->protocol_version = front_end_ptr->protocol_version;
 		if (IS_NODE_DOWN(front_end_ptr) &&
 		    job_ptr->node_bitmap_cg) {
-			for (int i = 0; (node_ptr = next_node_bitmap(
-						 job_ptr->node_bitmap_cg, &i));
+			for (int i = 0;
+			     (node_ptr =
+				next_node_bitmap(job_ptr->node_bitmap_cg, &i));
 			     i++) {
 				bit_clear(job_ptr->node_bitmap_cg,
 					  node_ptr->index);

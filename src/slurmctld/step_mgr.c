@@ -1767,8 +1767,9 @@ static int _count_cpus(job_record_t *job_ptr, bitstr_t *bitmap,
 	if (job_ptr->job_resrcs && job_ptr->job_resrcs->cpus &&
 	    job_ptr->job_resrcs->node_bitmap) {
 		int node_inx = -1;
-		for (i = 0; (node_ptr = next_node_bitmap(
-				     job_ptr->job_resrcs->node_bitmap, &i));
+		for (i = 0;
+		     (node_ptr = next_node_bitmap(
+			job_ptr->job_resrcs->node_bitmap, &i));
 		     i++) {
 			node_inx++;
 			if (!bit_test(job_ptr->node_bitmap, node_ptr->index) ||
