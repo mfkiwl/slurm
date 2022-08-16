@@ -1216,6 +1216,8 @@ extern int select_p_job_ready(job_record_t *job_ptr)
 		return 0;
 	}
 
+	if (!job_ptr->node_bitmap)
+		return READY_NODE_STATE;
 	for (int i = 0; (node_ptr = next_node_bitmap(job_ptr->node_bitmap, &i));
 	     i++) {
 		if (IS_NODE_POWERED_DOWN(node_ptr) ||
