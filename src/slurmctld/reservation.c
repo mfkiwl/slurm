@@ -1950,8 +1950,9 @@ static void _pack_resv(slurmctld_resv_t *resv_ptr, buf_t *buffer,
 				i_cnt = bit_set_count(core_resrcs->node_bitmap);
 				pack32(i_cnt, buffer);
 				for (int i = 0;
-				     (node_ptr = next_node_bitmap(
-					      core_resrcs->node_bitmap, &i));
+				     (node_ptr =
+				      next_node_bitmap(core_resrcs->node_bitmap,
+						       &i));
 				     i++) {
 					offset_start = cr_get_coremap_offset(i);
 					offset_end = cr_get_coremap_offset(i+1);
@@ -2224,8 +2225,9 @@ static void _set_tres_cnt(slurmctld_resv_t *resv_ptr,
 			bit_set_count(resv_ptr->core_bitmap);
 
 		if (resv_ptr->node_bitmap) {
-			for (int i = 0; (node_ptr = next_node_bitmap(
-						 resv_ptr->node_bitmap, &i));
+			for (int i = 0;
+			     (node_ptr = next_node_bitmap(resv_ptr->node_bitmap,
+							  &i));
 			     i++) {
 				int offset, core;
 				uint32_t cores, threads;

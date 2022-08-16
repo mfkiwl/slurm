@@ -535,8 +535,9 @@ static int _eval_nodes(job_record_t *job_ptr, gres_mc_data_t *mc_ptr,
 	 * provide, then select additional resources as needed in next loop
 	 */
 	if (req_map) {
-		for (i = 0; (node_ptr = next_node_bitmap(req_map, &i)) &&
-			    (max_nodes > 0);
+		for (i = 0;
+		     ((node_ptr = next_node_bitmap(req_map, &i)) &&
+		      (max_nodes > 0));
 		     i++) {
 			_select_cores(job_ptr, mc_ptr, enforce_binding, i,
 				      &avail_cpus, max_nodes, min_rem_nodes,

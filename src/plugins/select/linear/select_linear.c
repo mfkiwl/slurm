@@ -3021,8 +3021,9 @@ static void _init_node_cr(void)
 
 		if (job_ptr->gres_list_alloc)
 			new_alloc = false;
-		for (i = 0; (node_ptr = next_node_bitmap(
-				     job_resrcs_ptr->node_bitmap, &i));
+		for (i = 0;
+		     (node_ptr = next_node_bitmap(job_resrcs_ptr->node_bitmap,
+						  &i));
 		     i++) {
 			node_offset++;
 			if (!bit_test(job_ptr->node_bitmap, i))

@@ -2015,8 +2015,9 @@ static uint32_t **_build_tasks_per_node_sock(struct job_resources *job_res,
 		}
 	}
 	while ((rem_tasks > 0) && overcommit) {
-		for (int i = 0; (rem_tasks > 0) &&
-				next_node_bitmap(job_res->node_bitmap, &i);
+		for (int i = 0;
+		     ((rem_tasks > 0) &&
+		      next_node_bitmap(job_res->node_bitmap, &i));
 		     i++) {
 			for (s = 0; (rem_tasks > 0) && (s < sock_cnt); s++) {
 				for (c = 0; c < cores_per_socket_cnt; c++) {

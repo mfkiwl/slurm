@@ -1698,8 +1698,8 @@ extern int select_p_step_start(step_record_t *step_ptr)
 			step_jobinfo->blade_map = bit_alloc(blade_cnt);
 
 		for (int i = 0;
-		     (node_ptr =
-			      next_node_bitmap(step_ptr->step_node_bitmap, &i));
+		     (node_ptr = next_node_bitmap(step_ptr->step_node_bitmap,
+						  &i));
 		     i++) {
 			nodeinfo = node_ptr->select_nodeinfo->data;
 			if (!bit_test(step_jobinfo->blade_map,

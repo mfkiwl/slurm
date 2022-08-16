@@ -4795,8 +4795,8 @@ static void _signal_step_timelimit(step_record_t *step_ptr, time_t now)
 	if (step_ptr->step_node_bitmap) {
 		agent_args->protocol_version = SLURM_PROTOCOL_VERSION;
 		for (int i = 0;
-		     (node_ptr =
-			      next_node_bitmap(step_ptr->step_node_bitmap, &i));
+		     (node_ptr = next_node_bitmap(step_ptr->step_node_bitmap,
+						  &i));
 		     i++) {
 			if (agent_args->protocol_version >
 			    node_ptr->protocol_version) {

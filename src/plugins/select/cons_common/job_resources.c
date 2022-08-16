@@ -385,12 +385,12 @@ extern int job_res_add_job(job_record_t *job_ptr, job_res_job_action_t action)
 			/* No row available to record this job */
 		}
 		/* update the node state */
-		for (i = 0, n = -1; next_node_bitmap(job->node_bitmap, &i); i++) {
+		for (i = 0, n = -1; next_node_bitmap(job->node_bitmap, &i);
+		     i++) {
 			n++;
 			if (job->cpus[n] == 0)
 				continue;  /* node lost by job resize */
-			select_node_usage[i].node_state +=
-				job->node_req;
+			select_node_usage[i].node_state += job->node_req;
 		}
 		if (slurm_conf.debug_flags & DEBUG_FLAG_SELECT_TYPE) {
 			info("DEBUG: (after):");

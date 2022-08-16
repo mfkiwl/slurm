@@ -225,8 +225,9 @@ static int _pick_exc_nodes(void *x, void *arg)
 			bit_size(ext_part_struct->exc_node_cnt_bitmap));
 		exc_node_cnt = ext_part_struct->exc_node_cnt;
 		for (int i = 0;
-		     (node_ptr = next_node_bitmap(
-			      ext_part_struct->exc_node_cnt_bitmap, &i));
+		     (node_ptr =
+		      next_node_bitmap(ext_part_struct->exc_node_cnt_bitmap,
+				       &i));
 		     i++) {
 			if (!IS_NODE_IDLE(node_ptr)			||
 			    IS_NODE_COMPLETING(node_ptr)		||
