@@ -102,11 +102,10 @@ extern node_use_record_t *node_data_dup_use(
 	new_use_ptr = xcalloc(node_record_count, sizeof(node_use_record_t));
 	new_ptr = new_use_ptr;
 
-	if (!node_map) {
-		node_map = bit_alloc(node_record_count);
-		bit_set_all(node_map);
-	}
-	for (int i = 0; (node_ptr = next_node_bitmap(node_map, &i)); i++) {
+	for (int i = 0;
+	     (node_ptr =
+	      (node_map ? next_node_bitmap(node_map, &i) : next_node(&i)));
+	     i++) {
 		new_ptr[i].node_state   = orig_ptr[i].node_state;
 		new_ptr[i].alloc_memory = orig_ptr[i].alloc_memory;
 		if (orig_ptr[i].gres_list)
