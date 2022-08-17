@@ -2190,8 +2190,8 @@ extern void set_priority_factors(time_t start_time, job_record_t *job_ptr)
 			}
 		} else if (slurm_conf.priority_favor_small) {
 			job_ptr->prio_factors->priority_js =
-				(double)(node_count - min_nodes)
-				/ (double)node_count;
+				(double)(node_count - min_nodes) /
+				(double)node_count;
 			if (cpu_cnt) {
 				job_ptr->prio_factors->priority_js +=
 					(double)(cluster_cpus - cpu_cnt)
