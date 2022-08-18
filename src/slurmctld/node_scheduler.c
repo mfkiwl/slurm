@@ -3246,7 +3246,6 @@ extern int valid_feature_counts(job_record_t *job_ptr, bool use_active,
 extern int job_req_node_filter(job_record_t *job_ptr,
 			       bitstr_t *avail_bitmap, bool test_only)
 {
-	int i;
 	struct job_details *detail_ptr = job_ptr->details;
 	multi_core_data_t *mc_ptr;
 	node_record_t *node_ptr;
@@ -3259,7 +3258,7 @@ extern int job_req_node_filter(job_record_t *job_ptr,
 	}
 
 	mc_ptr = detail_ptr->mc_ptr;
-	for (i = 0; (node_ptr = next_node_bitmap(avail_bitmap, &i)); i++) {
+	for (int i = 0; (node_ptr = next_node_bitmap(avail_bitmap, &i)); i++) {
 		if ((detail_ptr->pn_min_cpus  > node_ptr->cpus)   ||
 		    ((detail_ptr->pn_min_memory & (~MEM_PER_CPU)) >
 		     node_ptr->real_memory) 			    ||
