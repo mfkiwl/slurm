@@ -546,6 +546,7 @@ static int _job_count_bitmap(struct cr_record *cr_ptr,
 			}
 		}
 	}
+
 	bit_and(jobmap, bitmap);
 	for (int i = 0; (node_ptr = next_node_bitmap(bitmap, &i)); i++) {
 		cpu_cnt = node_ptr->config_ptr->cpus;
