@@ -233,6 +233,8 @@ extern bool gres_select_util_job_mem_set(List job_gres_list,
 	if (!job_gres_list)
 		return false;
 
+	if (!bit_set_count(job_res->node_bitmap))
+		return false;
 	job_gres_iter = list_iterator_create(job_gres_list);
 	while ((gres_state_job = list_next(job_gres_iter))) {
 		gres_js = (gres_job_state_t *) gres_state_job->gres_data;
