@@ -2362,6 +2362,10 @@ static int _eval_nodes_topo(job_record_t *job_ptr,
 			else
 				req2_nodes_bitmap = bit_copy(best_nodes_bitmap);
 		}
+
+		if (!bit_set_count(nw->node_bitmap))
+			continue;
+
 		for (i = 0; (node_ptr = next_node_bitmap(nw->node_bitmap, &i));
 		     i++) {
 			if (avail_cpu_per_node[i])
