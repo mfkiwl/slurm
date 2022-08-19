@@ -2664,6 +2664,14 @@ extern int make_batch_job_cred(batch_job_launch_msg_t *launch_msg_ptr,
 	cred_arg.step_id.step_id = SLURM_BATCH_SCRIPT;
 	cred_arg.step_id.step_het_comp = NO_VAL;
 	if (job_resrcs_ptr->memory_allocated) {
+		/* What if:
+		 * node_name_get_inx doesn't find the node, and returns -1
+		 * bit_get_pos_num() will xassert because -1 < bit_cnt.
+#ifndef NDEBUG
+	bit_cnt = _bitstr_bits(b);
+	xassert(pos <= bit_cnt);
+#endif
+*/
 		int batch_inx = bit_get_pos_num(
 			job_ptr->node_bitmap,
 			node_name_get_inx(job_ptr->batch_host));
