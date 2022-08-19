@@ -15414,9 +15414,6 @@ extern uint64_t job_get_tres_mem(struct job_resources *job_res,
 extern bool job_epilog_complete(uint32_t job_id, char *node_name,
 				uint32_t return_code)
 {
-#ifdef HAVE_FRONT_END
-	int i;
-#endif
 	job_record_t *job_ptr = find_job_record(job_id);
 	node_record_t *node_ptr;
 
